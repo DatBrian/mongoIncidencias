@@ -20,20 +20,23 @@ class TrainersController {
         res.json(response);
     });
 
-    public insertOne = catchedAsync(async (req: Request, _res: Response) => {
+    public insertOne = catchedAsync(async (req: Request, res: Response) => {
         const body = req.body;
-        return await this.service.insertOne(body);
+        const response = await this.service.insertOne(body);
+        res.json(response);
     });
 
-    public updateOne = catchedAsync(async (req: Request, _res: Response) => {
+    public updateOne = catchedAsync(async (req: Request, res: Response) => {
         const id = req.query.id;
         const body = req.body;
-        return await this.service.updateOne(id, body);
+        const response = await this.service.updateOne(id, body);
+        res.json(response)
     });
 
-    public deleteOne = catchedAsync(async (req: Request, _res: Response) => {
+    public deleteOne = catchedAsync(async (req: Request, res: Response) => {
         const id = req.query.id;
-        return await this.service.deleteOne(id);
+        const response = await this.service.deleteOne(id);
+        res.json(response)
     });
 }
 export default TrainersController;

@@ -112,7 +112,7 @@ class TrainerRepository {
                 .collection(this.entity)
                 .deleteOne(id);
             return `${this.entity} eliminado correctamente`;
-        } catch (error: any) {
+        } catch (error: any ) {
             new ClientError(`Error en el repositorio de ${this.entity}`, 400);
             throw error.message;
         } finally {

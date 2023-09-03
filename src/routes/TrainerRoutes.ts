@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { TrainersController } from "../api/v1";
 import routesVersioning from "express-routes-versioning";
+import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware";
+import { TrainerDTO } from "../models/dto/TrainerDTO";
+import TrainerSchema from "../models/schemas/TrainerSchema";
 
 class TrainersRoutes {
     private readonly path: string;
@@ -28,7 +31,9 @@ class TrainersRoutes {
                 "1.0.0": this.controller.getById(req, res, next),
             });
         });
-        this.router.post(`${this.path}/insert`, (req, res, next) => {
+        this.router.post(`${this.path}/insert`,
+            new ValidateDTOMiddleware(TrainerDTO, TrainerSchema.properties()).validate(),
+            (req, res, next) => {
             this.version({
                 "1.0.0": this.controller.insertOne(req, res, next),
             });

@@ -23,6 +23,7 @@
     "express-rate-limit": "6.9.0",
     "express-routemap": "1.6.0",
     "express-session": "1.17.3",
+    "express-validator": "7.0.1",
     "jose": "4.14.4",
     "passport": "0.6.0",
     "passport-http-bearer": "1.0.1",
