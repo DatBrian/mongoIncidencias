@@ -20,7 +20,7 @@ class App extends Connection {
   public port: number;
   public server: any;
 
-  constructor(routes: RoutesInterface[]) {
+  constructor(routes:any) {
     super();
     this.app = express();
     this.port = Number(process.env.PORT) || 5000;
