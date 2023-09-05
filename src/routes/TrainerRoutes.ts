@@ -4,6 +4,8 @@ import routesVersioning from "express-routes-versioning";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware";
 import { TrainerDTO } from "../models/dto/TrainerDTO";
 import TrainerSchema from "../models/schemas/TrainerSchema";
+import passPortHelper from "../helpers/passPortHelper";
+import { limitUsuario } from "../helpers/limit";
 
 class TrainersRoutes {
     public readonly path: string;
@@ -20,6 +22,12 @@ class TrainersRoutes {
     }
 
     initRoutes() {
+        this.router.use(
+            limitUsuario(),
+            passPortHelper.authenticate("bearer", {
+                session: false,
+            })
+        );
         this.router.get(
             `/all`,
             this.version({

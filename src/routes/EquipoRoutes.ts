@@ -4,6 +4,8 @@ import routesVersioning from "express-routes-versioning";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware";
 import EquipoSchema from "../models/schemas/EquipoSchema";
 import { EquipoDTO } from "../models/dto/EquipoDTO";
+import { limitUsuario } from "../helpers/limit";
+import passPortHelper from "../helpers/passPortHelper"
 
 class EquipoRoutes {
     public readonly path: string;
@@ -20,6 +22,10 @@ class EquipoRoutes {
     }
 
     initRoutes() {
+        this.router.use(
+            limitUsuario(),
+            passPortHelper.authenticate("bearer", { session: false })
+        );
         this.router.get(
             `/all`,
             this.version({

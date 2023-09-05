@@ -4,6 +4,8 @@ import routesVersioning from "express-routes-versioning";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware";
 import IncidenciaSchema from "../models/schemas/IncidenciaSchema";
 import { IncidenciaDTO } from "../models/dto/IncidenciaDTO";
+import { limitUsuario } from "../helpers/limit";
+import passPortHelper from "../helpers/passPortHelper"
 
 class IncidenciaRoutes {
     public readonly path: string;
@@ -20,6 +22,12 @@ class IncidenciaRoutes {
     }
 
     initRoutes() {
+        this.router.use(
+            limitUsuario(),
+            passPortHelper.authenticate("bearer", {
+                session: false,
+            })
+        );
         this.router.get(
             `/all`,
             this.version({

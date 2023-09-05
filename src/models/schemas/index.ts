@@ -3,7 +3,7 @@ import EquipoSchema from "./EquipoSchema";
 import IncidenciaSchema from "./IncidenciaSchema";
 import RolesSchema from "./RolesSchema";
 import TrainerSchema from "./TrainerSchema";
-import UsuariosSchema from "./UsersSchema";
+import UserSchema from "./UserSchema";
 
 const schemas = [
     EquipoSchema,
@@ -11,7 +11,7 @@ const schemas = [
     IncidenciaSchema,
     AutoIncrementSchema,
     RolesSchema,
-    UsuariosSchema
-]
+    UserSchema,
+];
 
 export {schemas}
