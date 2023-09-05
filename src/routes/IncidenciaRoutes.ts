@@ -12,7 +12,7 @@ class IncidenciaRoutes {
     private version: any;
 
     constructor() {
-        this.path = "/Incidencia";
+        this.path = "/incidencia";
         this.router = Router();
         this.controller = new IncidenciaController();
         this.version = routesVersioning();
