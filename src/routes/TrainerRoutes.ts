@@ -31,18 +31,30 @@ class TrainersRoutes {
                 "1.0.0": this.controller.getById(req, res, next),
             });
         });
-        this.router.post(`/insert`,
-            new ValidateDTOMiddleware(TrainerDTO, TrainerSchema.properties()).validate(),
+        this.router.post(
+            `/insert`,
+            new ValidateDTOMiddleware(
+                TrainerDTO,
+                TrainerSchema.properties()
+            ).validate(),
             (req, res, next) => {
-            this.version({
-                "1.0.0": this.controller.insertOne(req, res, next),
-            });
-        });
-        this.router.put(`/update`, (req, res, next) => {
-            this.version({
-                "1.0.0": this.controller.updateOne(req, res, next),
-            });
-        });
+                this.version({
+                    "1.0.0": this.controller.insertOne(req, res, next),
+                });
+            }
+        );
+        this.router.put(
+            `/update`,
+            new ValidateDTOMiddleware(
+                TrainerDTO,
+                TrainerSchema.properties()
+            ).validate(),
+            (req, res, next) => {
+                this.version({
+                    "1.0.0": this.controller.updateOne(req, res, next),
+                });
+            }
+        );
         this.router.delete(`/delete`, (req, res, next) => {
             this.version({
                 "1.0.0": this.controller.deleteOne(req, res, next),

@@ -2,8 +2,8 @@ import { Router } from "express";
 import { IncidenciaController } from "../api/v1";
 import routesVersioning from "express-routes-versioning";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware";
-import { TrainerDTO } from "../models/dto/TrainerDTO";
 import IncidenciaSchema from "../models/schemas/IncidenciaSchema";
+import { IncidenciaDTO } from "../models/dto/IncidenciaDTO";
 
 class IncidenciaRoutes {
     public readonly path: string;
@@ -34,7 +34,7 @@ class IncidenciaRoutes {
         this.router.post(
             `/insert`,
             new ValidateDTOMiddleware(
-                TrainerDTO,
+                IncidenciaDTO,
                 IncidenciaSchema.properties()
             ).validate(),
             (req, res, next) => {
@@ -43,11 +43,18 @@ class IncidenciaRoutes {
                 });
             }
         );
-        this.router.put(`/update`, (req, res, next) => {
-            this.version({
-                "1.0.0": this.controller.updateOne(req, res, next),
-            });
-        });
+        this.router.put(
+            `/update`,
+            new ValidateDTOMiddleware(
+                IncidenciaDTO,
+                IncidenciaSchema.properties()
+            ).validate(),
+            (req, res, next) => {
+                this.version({
+                    "1.0.0": this.controller.updateOne(req, res, next),
+                });
+            }
+        );
         this.router.delete(`/delete`, (req, res, next) => {
             this.version({
                 "1.0.0": this.controller.deleteOne(req, res, next),
