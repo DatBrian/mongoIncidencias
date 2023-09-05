@@ -92,8 +92,7 @@ class App extends Connection {
     // this.app.use(`/api/${process.env.API_VERSION}`, authRoutes.router);
     routes.forEach((route) => {
       this.app.use(
-        `/api/${process.env.API_VERSION}`,
-        // authJWTMiddleware.validateToken,
+        `/api${route.path}`,
         route.router
       );
     });

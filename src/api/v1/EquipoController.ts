@@ -1,12 +1,12 @@
-import { TrainersService } from "../../services";
+import { EquipoService } from "../../services";
 import { catchedAsync } from "../../utils";
 import { Request, Response } from "express";
 
-class TrainersController {
-    private readonly service: TrainersService;
+class EquipoController {
+    private readonly service: EquipoService;
 
     constructor() {
-        this.service = new TrainersService();
+        this.service = new EquipoService();
     }
 
     public getAll = catchedAsync(async (_req: Request, res: Response) => {
@@ -39,4 +39,4 @@ class TrainersController {
         res.json(response);
     });
 }
-export default TrainersController;
+export default EquipoController;

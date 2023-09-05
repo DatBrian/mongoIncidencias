@@ -1,20 +1,20 @@
 import { Router } from "express";
-import { TrainersController } from "../api/v1";
+import { IncidenciaController } from "../api/v1";
 import routesVersioning from "express-routes-versioning";
 import ValidateDTOMiddleware from "../middlewares/ValidateDTOMiddleware";
 import { TrainerDTO } from "../models/dto/TrainerDTO";
-import TrainerSchema from "../models/schemas/TrainerSchema";
+import IncidenciaSchema from "../models/schemas/IncidenciaSchema";
 
-class TrainersRoutes {
+class IncidenciaRoutes {
     public readonly path: string;
     public router: Router;
-    private readonly controller: TrainersController;
+    private readonly controller: IncidenciaController;
     private version: any;
 
     constructor() {
-        this.path = "/trainer";
+        this.path = "/Incidencia";
         this.router = Router();
-        this.controller = new TrainersController();
+        this.controller = new IncidenciaController();
         this.version = routesVersioning();
         this.initRoutes();
     }
@@ -31,13 +31,18 @@ class TrainersRoutes {
                 "1.0.0": this.controller.getById(req, res, next),
             });
         });
-        this.router.post(`/insert`,
-            new ValidateDTOMiddleware(TrainerDTO, TrainerSchema.properties()).validate(),
+        this.router.post(
+            `/insert`,
+            new ValidateDTOMiddleware(
+                TrainerDTO,
+                IncidenciaSchema.properties()
+            ).validate(),
             (req, res, next) => {
-            this.version({
-                "1.0.0": this.controller.insertOne(req, res, next),
-            });
-        });
+                this.version({
+                    "1.0.0": this.controller.insertOne(req, res, next),
+                });
+            }
+        );
         this.router.put(`/update`, (req, res, next) => {
             this.version({
                 "1.0.0": this.controller.updateOne(req, res, next),
@@ -50,4 +55,4 @@ class TrainersRoutes {
         });
     }
 }
-export default TrainersRoutes;
+export default IncidenciaRoutes;

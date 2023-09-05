@@ -1,3 +1,5 @@
 import TrainersController from "./TrainerController";
+import EquipoController from "./EquipoController";
+import IncidenciaController from "./IncidenciaController";
 
-export {TrainersController}
+export {TrainersController, EquipoController, IncidenciaController}

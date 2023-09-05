@@ -1,3 +1,5 @@
 import TrainerRepository from "./TrainerRepository"
+import EquipoRepository from "./EquipoRepository"
+import IncidenciaRepository from "./IncidenciaRepository"
 
-export {TrainerRepository}
+export {EquipoRepository,TrainerRepository, IncidenciaRepository}
